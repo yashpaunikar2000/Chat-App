@@ -53,7 +53,25 @@ io.on("connection", (socket) => {
 
 // middleware setup
 app.use(express.json({ limit: "4mb" }));
-app.use(cors());
+
+const allowedOrigins = [
+  "https://chat-app-frontend-hazel-eight.vercel.app",
+  "http://localhost:3000", // for local dev
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 
 // route setup
 app.use("/api/status", (req, res) => res.send("Server is live"));
