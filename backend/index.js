@@ -55,7 +55,7 @@ io.on("connection", (socket) => {
 app.use(express.json({ limit: "4mb" }));
 
 const allowedOrigins = [
-  "https://chat-app-frontend-hazel-eight.vercel.app",
+  "https://chat-app-frontend-tau-henna.vercel.app",
   "http://localhost:3000", // for local dev
 ];
 
